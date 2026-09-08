@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+{% block title %}Prathamesh Rathod | Video Editor & Videographer{% endblock %}
+
+{% block content %}
+
+<!-- ===== HERO SECTION ===== -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-container">
+    <div class="hero-text" data-aos="fade-right" data-aos-duration="1000">
+      <p class="hero-greet">Hey, I'm</p>
+      <h1 class="hero-name">Prathamesh <span>Rathod</span></h1>
+      <h2 class="hero-role">
+        <span id="typed-text"></span><span class="cursor">|</span>
+      </h2>
+      <p class="hero-desc">
+        I shoot and edit videos that tell real stories — from viral Instagram reels
+        and bold political campaigns to cinematic weddings, pre-weddings and
+        birthday celebrations. Every frame, cut and color grade is crafted to make
+        your moment unforgettable.
+      </p>
+      <div class="hero-buttons">
+        <a href="{{ url_for('portfolio') }}" class="btn btn-primary">View My Work</a>
+        <a href="https://wa.me/918080602746" target="_blank" class="btn btn-outline">
+          <i class="fa-brands fa-whatsapp"></i> WhatsApp Me
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-image" data-aos="fade-left" data-aos-duration="1000">
+      <div class="image-ring"></div>
+      <img src="{{ url_for('static', filename='images/prathamesh.jpeg') }}" alt="Prathamesh Rathod">
+    </div>
+  </div>
+
+  <div class="scroll-down">
+    <span></span>
+  </div>
+</section>
+
+<!-- ===== ABOUT / INTRO ===== -->
+<section class="about" id="about">
+  <div class="section-heading" data-aos="fade-up">
+    <p class="tag">About Me</p>
+    <h2>The Story Behind The Lens</h2>
+  </div>
+
+  <div class="about-content">
+    <div class="about-text" data-aos="fade-up" data-aos-delay="100">
+      <p>
+        I'm <strong>Prathamesh</strong>, a passionate video editor and videographer.
+        I've edited countless Instagram reels — from fun, trending content to
+        sharp, high-impact <strong>political campaign videos</strong>. On the
+        production side, I've shot and edited <strong>cinematic weddings</strong>,
+        <strong>pre-wedding shoots</strong>, <strong>couple shoots</strong>, and
+        <strong>birthday celebrations</strong> — bringing a cinematic touch to
+        every kind of event.
+      </p>
+      <p>
+        Whether it's a 30-second reel or a full wedding film, I handle everything:
+        shooting, editing, color grading, sound design and final delivery. My goal
+        is simple — make every video look premium and feel real.
+      </p>
+
+      <div class="about-stats">
+        <div class="stat-box">
+          <h3><span class="counter" data-target="100">0</span>+</h3>
+          <p>Reels Edited</p>
+        </div>
+        <div class="stat-box">
+          <h3><span class="counter" data-target="6">0</span>+</h3>
+          <p>Service Types</p>
+        </div>
+        <div class="stat-box">
+          <h3><span class="counter" data-target="100">0</span>%</h3>
+          <p>Client Focus</p>
+        </div>
+      </div>
+
+      <a href="https://www.instagram.com/itz_pratya_official" target="_blank" class="btn btn-primary">
+        <i class="fa-brands fa-instagram"></i> See My Reels on Instagram
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SERVICES ===== -->
+<section class="services" id="services">
+  <div class="section-heading" data-aos="fade-up">
+    <p class="tag">What I Do</p>
+    <h2>Services</h2>
+  </div>
+
+  <div class="services-grid">
+    {% for s in services %}
+    <div class="service-card" data-aos="zoom-in" data-aos-delay="{{ loop.index0 * 80 }}">
+      <div class="service-icon"><i class="{{ s['icon'] }}"></i></div>
+      <h3>{{ s['title'] }}</h3>
+      <p>{{ s['description'] }}</p>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<!-- ===== CTA STRIP ===== -->
+<section class="cta-strip" data-aos="fade-up">
+  <h2>Got a video in mind? Let's bring it to life.</h2>
+  <a href="https://wa.me/918080602746" target="_blank" class="btn btn-primary">
+    <i class="fa-brands fa-whatsapp"></i> Contact on WhatsApp
+  </a>
+</section>
+
+{% endblock %}

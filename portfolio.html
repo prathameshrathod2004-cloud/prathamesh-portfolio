@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Portfolio | Prathamesh Rathod{% endblock %}
+
+{% block content %}
+
+<section class="page-header" data-aos="fade-up">
+  <p class="tag">My Work</p>
+  <h1>Portfolio</h1>
+  <p class="page-sub">A look at everything I shoot and edit — see the full reels on Instagram.</p>
+</section>
+
+<section class="portfolio-grid-section">
+  <div class="services-grid">
+    {% for s in services %}
+    <div class="service-card portfolio-card" data-aos="fade-up" data-aos-delay="{{ loop.index0 * 80 }}">
+      <div class="service-icon"><i class="{{ s['icon'] }}"></i></div>
+      <h3>{{ s['title'] }}</h3>
+      <p>{{ s['description'] }}</p>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="insta-cta" data-aos="zoom-in">
+  <div class="insta-cta-inner">
+    <i class="fa-brands fa-instagram insta-icon"></i>
+    <h2>All my reels & shoots live on Instagram</h2>
+    <p>Wedding films, pre-wedding shoots, political reels, birthday videos — everything's posted there. Take a look!</p>
+    <a href="https://www.instagram.com/itz_pratya_official" target="_blank" class="btn btn-primary">
+      <i class="fa-brands fa-instagram"></i> @itz_pratya_official
+    </a>
+  </div>
+</section>
+
+{% endblock %}

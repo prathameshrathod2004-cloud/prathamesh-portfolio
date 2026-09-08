@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="admin-body">
+
+<div class="admin-wrap">
+  <div class="admin-top">
+    <h1><i class="fa-solid fa-gauge"></i> Dashboard</h1>
+    <a href="{{ url_for('admin_logout') }}" class="btn btn-outline">Logout</a>
+  </div>
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      {% for category, msg in messages %}
+        <div class="flash-msg flash-{{ category }}">{{ msg }}</div>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+
+  <div class="admin-section">
+    <h2>Add Service</h2>
+    <form method="POST" action="{{ url_for('add_service') }}" class="admin-form">
+      <input type="text" name="title" placeholder="Service title" required>
+      <input type="text" name="icon" placeholder="Font Awesome icon class (e.g. fa-solid fa-video)" value="fa-solid fa-video">
+      <textarea name="description" placeholder="Short description" required></textarea>
+      <button type="submit" class="btn btn-primary">Add Service</button>
+    </form>
+  </div>
+
+  <div class="admin-section">
+    <h2>Current Services ({{ services|length }})</h2>
+    <table class="admin-table">
+      <tr><th>Icon</th><th>Title</th><th>Description</th><th></th></tr>
+      {% for s in services %}
+      <tr>
+        <td><i class="{{ s['icon'] }}"></i></td>
+        <td>{{ s['title'] }}</td>
+        <td>{{ s['description'] }}</td>
+        <td><a href="{{ url_for('delete_service', service_id=s['id']) }}" class="del-link">Delete</a></td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+
+  <div class="admin-section">
+    <h2>Contact Messages ({{ messages_count if messages_count else messages|length }})</h2>
+    <table class="admin-table">
+      <tr><th>Name</th><th>Email</th><th>Phone</th><th>Message</th><th>Date</th><th></th></tr>
+      {% for m in messages %}
+      <tr>
+        <td>{{ m['name'] }}</td>
+        <td>{{ m['email'] }}</td>
+        <td>{{ m['phone'] }}</td>
+        <td>{{ m['message'] }}</td>
+        <td>{{ m['created_at'] }}</td>
+        <td><a href="{{ url_for('delete_message', message_id=m['id']) }}" class="del-link">Delete</a></td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+</div>
+
+</body>
+</html>
